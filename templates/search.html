@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Image Search</title>
+    <style>
+        /* Add the CSS adjustments here */
+        /* Increase font size for form labels and inputs */
+.form-label {
+    font-size: 1.2rem; /* Adjust size as needed */
+}
+
+.form-control,
+.form-range {
+    font-size: 1rem; /* Adjust size for input and range controls */
+}
+
+h1 {
+    font-size: 2rem; /* Adjust size for the title */
+}
+
+p {
+    font-size: 1.1rem; /* Adjust size for paragraphs */
+}
+
+/* Button styling for better readability */
+.btn {
+    font-size: 1rem;
+}
+
+    </style>
+</head>
+
+<body>
+    <script>
+        /*
+            // Update the display for the range input value in real-time
+        function updateDisplay(val) {
+        document.getElementById('rangeDisplay').innerText = val;
+        }
+    */
+    // Map UI values (1-5) to actual form values (7.5, 6, 4.5, 3, 1.5)
+        const valueMap = {
+            0: 9,
+            0.2: 7.5,
+            0.4: 6,
+            0.6: 4.5,
+            0.8: 3,
+            1:1
+        };
+        function updateDisplay(value) {
+            // Update the displayed UI value
+            document.getElementById('rangeDisplay').innerText = value;
+            // Update the hidden input with the actual form value
+            document.getElementById('strong').value = valueMap[value];
+        }
+            
+    </script>
+    <div class="container my-5 py-5">
+        <h1 class="mb-4">Image Search</h1>
+        <form action="{{ url_for('search') }}" method="post">
+            <div class="form-outline mb-4">
+                <input type="text" id="query" name="query" class="form-control" placeholder="Search images" required />
+                <label class="form-label" for="query">Search images</label>
+            </div>
+            <!-- New input field for desired image quantity -->
+            <div class="form-outline mb-4">
+                <input type="number" id="quantity" name="quantity" class="form-control" placeholder="Enter desired number of images" min="1" required />
+                <label class="form-label" for="quantity">Number of Images</label>
+            </div>
+            <!--
+            <div class="form-outline mb-4">
+                <input type="range" id="uiRange" name="strength" class="form-range" min="1" max="10" step="1" value="1" oninput="updateDisplay(this.value)" required>
+                <label class="form-label" for="uiRange">Intensity level of image reality</label>
+                <p>Selected Value: <span id="rangeDisplay">1</span></p>
+            </div>
+            Hidden field to send actual form value -->
+            
+            <div class="form-outline mb-4">
+                <input type="range" id="uiRange" name="uiRange" class="form-range" min="0" max="1" step="0.2" value="0.2" oninput="updateDisplay(this.value)" required>
+                <label class="form-label" for="uiRange">Intensity level of image reality</label>
+                <p>Selected Value: <span id="rangeDisplay">0.2</span></p>
+                <input type="hidden" id="strong" name="strong" value="3">  
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-block">Search</button>
+        </form>
+    </div>
+    <div class="footer d-flex justify-content-between align-items-center px-3">
+        <div>
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('index') }}" class="btn btn-link">Home</a>
+                <a href="{{ url_for('logout') }}" class="btn btn-link">Logout</a>
+                <a href="{{ url_for('saved_images') }}" class="btn btn-link">Saved Images</a> <!-- 하단 바에 저장된 이미지 버튼 추가 -->
+            {% else %}
+                <a href="{{ url_for('login') }}" class="btn btn-link">Login</a>
+                <a href="{{ url_for('index') }}" class="btn btn-link">Home</a>
+            {% endif %}
+        </div>
+        <p class="mb-0">&copy; 2024 Sejong University AIDS. All rights reserved.</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.js"></script>
+</body>
+</html>

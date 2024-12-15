@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Sign Up</title>
+</head>
+<body>
+    <div class="container my-5 py-5">
+        <h1 class="mb-4">Sign Up</h1>
+        <form action="/signup" method="post">
+            <div class="form-outline mb-4">
+                <input type="text" id="username" name="username" class="form-control" placeholder="Name" required />
+                <label class="form-label" for="username">Name</label>
+            </div>
+            <div class="form-outline mb-4">
+                <input type="email" id="email" name="email" class="form-control" placeholder="Email" required />
+                <label class="form-label" for="email">Email</label>
+            </div>
+            <div class="form-outline mb-4">
+                <input type="password" id="password" name="password" class="form-control" placeholder="Password" required />
+                <label class="form-label" for="password">Password</label>
+            </div>
+            <div class="form-outline mb-4">
+                <input type="password" id="confirm_password" name="confirm_password" class="form-control" placeholder="Confirm Password" required />
+                <label class="form-label" for="confirm_password">Confirm Password</label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Sign Up</button>
+            <a href="{{ url_for('login') }}" class="d-block mt-3 text-primary">Already have an account? Log in</a>
+        </form>
+    </div>
+    <div class="footer d-flex justify-content-between align-items-center px-3">
+        <div>
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('index') }}" class="btn btn-link">Home</a>
+                <a href="{{ url_for('logout') }}" class="btn btn-link">Logout</a>
+                <a href="{{ url_for('saved_images') }}" class="btn btn-link">Saved Images</a> <!-- 하단 바에 저장된 이미지 버튼 추가 -->
+            {% else %}
+                <a href="{{ url_for('login') }}" class="btn btn-link">Login</a>
+                <a href="{{ url_for('index') }}" class="btn btn-link">Home</a>
+            {% endif %}
+        </div>
+        <p class="mb-0">&copy; 2024 Sejong University AIDS. All rights reserved.</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.0/mdb.min.js"></script>
+</body>
+</html>

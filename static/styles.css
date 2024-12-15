@@ -1,0 +1,117 @@
+/* 전체적인 바디 스타일 */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f9;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Center items from the top */
+    min-height: 100vh;
+}
+
+/* 컨테이너 스타일 */
+.container {
+    max-width: 1200px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-top: 20px; /* Add margin to push down from top */
+}
+
+/* 카드 스타일 */
+.card {
+    height: 400px; /* Adjust height to match saved_images */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card img {
+    object-fit: cover;
+    height: 250px; /* Adjust height to match saved_images */
+    width: 100%;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 150px;
+}
+
+/* 버튼 스타일 */
+.btn-custom {
+    background-color: #4CAF50 !important;
+    color: white !important;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.btn-custom:hover {
+    opacity: 0.8;
+}
+
+/* 추가 링크 스타일 */
+a {
+    display: block;
+    margin-top: 12px;
+    color: #666;
+    text-decoration: none;
+}
+
+/* 오류 메시지 스타일 */
+.errors {
+    color: red;
+    margin: 10px 0;
+    list-style-position: inside;
+}
+
+/* 전체 페이지 높이를 확보 */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+/* 메인 콘텐츠 스타일 조정 */
+.main-content {
+    min-height: calc(100vh - 50px);
+    padding: 20px;
+    padding-bottom: 50px;
+    box-sizing: border-box;
+}
+
+/* 푸터 스타일 조정 (flexbox 사용) */
+.footer {
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    bottom: 0;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* sticky-header 스타일 */
+.sticky-header {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    background-color: white;
+    z-index: 1000;
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.content {
+    padding-top: 60px;
+}
